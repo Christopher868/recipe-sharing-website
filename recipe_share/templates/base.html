@@ -5,10 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="{% static 'js/base.js' %}"></script>
     <title>Recipe Share</title>
 </head>
 <body>
-    <header></header>
+    <header>
+        <h1 id="nav-header-text">Recipe Share</h1>
+        <nav id="navbar">
+            <ul id="nav-list">
+                <li class="nav-item"><a href="#" class="nav-link">Recipes</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Filler</a></li>
+                <li class="nav-item"><a href="#" class="search-icon nav-link"><i class="fa fa-search"></i></a></li>
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown-button"><span class="button">Account <i class="fas fa-angle-down down" id="arrow"></i></span> 
+                        <div class="dropdown-content hide">
+                            <ul id="dropdown-list">
+                                <a href="" class="dropdown-link"><li>Create a Recipe</li></a>
+                                <a href="" class="dropdown-link"><li>View my Recipes</li></a>
+                                <a href="" class="dropdown-link"><li>Edit Profile</li></a>
+                                <a href="" class="dropdown-link"><li>Logout</li></a>
+                            </ul>
+                        </div>
+                </li>
+                {% else %}
+                <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+                {% endif %}
+                <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
+            </ul>
+        </nav>
+        <form id="search-bar" class="hide" action="">
+            {% csrf_token %}
+            <select name="category" id="select-category">
+                <option value="recipe-name">Recipe</option>
+                <option value="author-name">Author</option>
+            </select>
+            <input type="search" id="search-input" placeholder="Search by Recipe Name">
+            <button type="submit" id="submit-button"><i class="fa fa-search"></i></button>
+        </form>
+    </header>
 
     <main>
     {% block content %}
@@ -16,6 +51,8 @@
     {% endblock content %}  
     </main> 
 
-    <footer></footer>
+    <footer>
+        Footer
+    </footer>
 </body>
 </html>

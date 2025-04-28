@@ -41,3 +41,10 @@ VIEW RECIPES PAGE:
 
 Once users have selected a category, recipes that match the category will be displayed. 
 
+LOGIN PAGE: 
+
+Users will be able to log themselves into an account using a form on the page if they have already create Once
+
+REGISTRATION PAGE:
+
+Users will be able to use a form to register themselves for an account. 
