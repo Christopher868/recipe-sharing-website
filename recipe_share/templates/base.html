@@ -73,10 +73,12 @@
     {% block footer %}
     <footer id="base-footer">
         <h2 id="credits">Created by Christopher Hicks</h2>
-        <h3 id="contact-info-msg">Need to report a bug or want to send us a suggestion for the website? <br> Send us a message <button type="button" id="contact-dropdown-button">here</button>!</h3>
-        <form action="" id="contact-form" class="hide">
+        <h3 id="contact-info-msg">Need to report a bug or want to send us a suggestion for the website? <br>Contact us by sending a message <button type="button" id="contact-dropdown-button">here</button>!</h3>
+        <form action="{% url 'contact' %}" id="contact-form" class="hide" method="POST">
             {% csrf_token %}
-            <input type="email" placeholder="Enter your email here">
+            <input type="hidden" name="form_type" value="contact_form">
+
+            <input type="email" placeholder="Enter your email here" name="email">
             <textarea name="message" id="message-box" placeholder="Enter your message here!"></textarea>
             <button type="submit">Send Message</button>
         </form>

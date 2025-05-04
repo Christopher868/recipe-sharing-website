@@ -73,9 +73,20 @@
     min-width: 280px;
 }
 
+.recipes-container a {
+    text-align: center;
+    width: 80%;
+
+
+    &:hover {
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px black;
+    }
+}
+
 .recipes-category-card {
     border: 1px solid grey;
-    width: 80%;
+    width: 100%;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -88,16 +99,18 @@
 .recipes-category-card h4,
 .recipe-link-card h4 {
     padding: 10px 0;
-    font-size: 1.5rem;
+    font-size: 2rem;
     position: absolute;
     bottom: 5%;
     color: white;
+    text-shadow: 0px 0px 3px black;
 }
 
 .home-img {
     width: 100%;
     aspect-ratio: 1.5 / 1;
     border-radius: 10px;
+    object-position: 50% 50%;
 }
 
 .recipe-link-card {

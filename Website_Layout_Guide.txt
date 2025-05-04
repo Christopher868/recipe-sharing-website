@@ -8,8 +8,6 @@ This page will include a login or logout button depending on if a user is alread
 
 The header for this page will include a dropdown menu for account options that allows users to edit their profile(if logged in), create a new recipe button,  to view their own recipes(if logged in). 
 
-The header will also have a button that allows username to view recipes by categories.
-
 This page will display recipe by recipe with the highest upvote to downvote ratio.
 
 In the footer of the page a contact us section will be included so that a email can be sent to either report website bugs or to send suggestions for the website.
@@ -29,12 +27,6 @@ VIEW MY RECIPES PAGE:
 
 
 This page will include a list of all recipes a user has create so that can view or edit them. 
-
-
-VIEW RECIPES BY CATEGORY PAGE:
-
-This page will display options of categories such as desert, soup, vegan, vegetarian that users can select
-
 
 
 VIEW RECIPES PAGE: 

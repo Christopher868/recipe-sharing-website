@@ -5,11 +5,14 @@ from .forms import LoginForm, CreateUserForm, ChangeUser
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from .models import CustomerMessage, UserRecipe, RecipeCategory
+import datetime
 
 
 # View for loading the homepage
 def home(request):
-    return render(request, 'home.html', {})
+    categories = RecipeCategory.objects.all()
+    return render(request, 'home.html', {'categories': categories})
 
 
 # View for loading login page and logging user into their account
@@ -26,7 +29,7 @@ def login_user(request):
                 if user is not None:
                     login(request,user)
                     messages.success(request, "Successfully logged in!")
-                    return redirect('homepage')
+                    return redirect(request.META.get('HTTP_REFERER', '/'))
                 else:
                     form.add_error(None, "Invalid username or password!")
         else:
@@ -38,7 +41,8 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     messages.success(request, "Successfully logged out!")
-    return redirect('homepage')
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
 
 # View for loading register page and registering a new user
 def register_user(request):
@@ -59,7 +63,8 @@ def register_user(request):
             form = CreateUserForm()
 
         return render(request, 'register.html', {'form': form})
-    
+
+
 # View for editing profile
 def edit_profile(request):
     if request.user.is_authenticated:
@@ -73,10 +78,11 @@ def edit_profile(request):
             form = ChangeUser(instance=request.user)
     else:
         messages.success(request, "Must be logged in to edit profile!")
-        return redirect('login')
+        return redirect('homepage')
     return render(request, 'edit-profile.html', {'form': form})
 
 
+# View for changing password
 def change_password(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -93,3 +99,17 @@ def change_password(request):
         return redirect('login')
 
     return render(request, 'change-password.html', {'form': form})
+
+
+# View for storing customer messages
+def contact(request):
+    if request.method =='POST':
+        email = request.POST.get('email')
+        message= request.POST.get('message')
+        date = datetime.date.today()
+        CustomerMessage.objects.create(email=email, message=message, date=date)
+        messages.success(request, 'Message Sent!')
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+    else:
+        return redirect('homepage')
+    
