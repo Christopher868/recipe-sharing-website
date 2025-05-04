@@ -7,15 +7,17 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <script src="{% static 'js/base.js' %}"></script>
-    <title>Recipe Share</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon/favicon.ico'%}">
+    <title>Recipe Exchange</title>
 </head>
 <body>
-    <header>
-        <h1 id="nav-header-text">Recipe Share</h1>
+    {% block header %}
+    <header id="base-header">
+        <h1 id="nav-header-text"><a href="{% url 'homepage'%}">Recipe Exchange</a></h1>
         <nav id="navbar">
             <ul id="nav-list">
-                <li class="nav-item"><a href="#" class="nav-link">Recipes</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Filler</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">All Recipes</a></li>
+                
                 <li class="nav-item"><a href="#" class="search-icon nav-link"><i class="fa fa-search"></i></a></li>
                 {% if user.is_authenticated %}
                 <li class="nav-item dropdown-button"><span class="button">Account <i class="fas fa-angle-down down" id="arrow"></i></span> 
@@ -23,36 +25,61 @@
                             <ul id="dropdown-list">
                                 <a href="" class="dropdown-link"><li>Create a Recipe</li></a>
                                 <a href="" class="dropdown-link"><li>View my Recipes</li></a>
-                                <a href="" class="dropdown-link"><li>Edit Profile</li></a>
-                                <a href="" class="dropdown-link"><li>Logout</li></a>
+                                <a href="{% url 'edit-profile' %}" class="dropdown-link"><li>Edit Profile</li></a>
+                                <a href="{% url 'logout' %}" class="dropdown-link"><li>Logout</li></a>
                             </ul>
                         </div>
                 </li>
                 {% else %}
-                <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="{% url  'login' %}" class="nav-link">Login</a></li>
                 {% endif %}
-                <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
+                <li class="nav-item"><a href="#contact-info-msg" class="nav-link">Contact Us</a></li>
             </ul>
         </nav>
-        <form id="search-bar" class="hide" action="">
-            {% csrf_token %}
-            <select name="category" id="select-category">
-                <option value="recipe-name">Recipe</option>
-                <option value="author-name">Author</option>
-            </select>
-            <input type="search" id="search-input" placeholder="Search by Recipe Name">
-            <button type="submit" id="submit-button"><i class="fa fa-search"></i></button>
-        </form>
+        <div id="search-container">
+            <form id="search-bar" class="hide" action="">
+                {% csrf_token %}
+                <select name="category" id="select-category" name="search-filter">
+                    <option value="recipe-name">Recipe</option>
+                    <option value="author-name">Author</option>
+                </select>
+                <input type="search" id="search-input" placeholder="Search by Recipe Name" name="search">
+                <button type="submit" id="submit-button"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
     </header>
+    {% endblock header %}
 
-    <main>
+    
+    <!-- That displays messages from django views -->
+    {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+
+
+
+    <main id="base-main">
+        <section id="page-content">
     {% block content %}
 
     {% endblock content %}  
+        </section>
     </main> 
-
-    <footer>
-        Footer
+    {% block footer %}
+    <footer id="base-footer">
+        <h2 id="credits">Created by Christopher Hicks</h2>
+        <h3 id="contact-info-msg">Need to report a bug or want to send us a suggestion for the website? <br> Send us a message <button type="button" id="contact-dropdown-button">here</button>!</h3>
+        <form action="" id="contact-form" class="hide">
+            {% csrf_token %}
+            <input type="email" placeholder="Enter your email here">
+            <textarea name="message" id="message-box" placeholder="Enter your message here!"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
     </footer>
+    {% endblock footer %}
 </body>
 </html>

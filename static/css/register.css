@@ -1,0 +1,147 @@
+header {
+    width: 100%;
+    height: 100px;
+    background-color: #e5e5e5;
+    box-shadow: 0px 0px 2px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* styles for header */
+#register-header {
+    font-size: 3rem;
+    color: #4a4e69;
+}
+
+
+/* messages styles */
+.errorlist {
+    list-style-type: none;
+    text-align: center;
+    min-height: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: red;
+}
+
+/* Main styles */
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+#register-form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    height: 90%;
+    row-gap: 30px;
+    column-gap: 10px;
+
+}
+
+#register-form p {
+    text-align: center;
+    width: 100%;
+
+}
+
+#register-form label {
+    display: block;
+    text-align: center;
+    color: #4a4e69;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+#register-form input {
+    width: 90%;
+    padding: 6px 5px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    text-align: center;
+    margin: 0 10px;
+
+    &:hover {
+        box-shadow: 0px 0px 2px black;
+    }
+
+    &:focus {
+        box-shadow: 0px 0px 2px black;
+        outline: none;
+    }
+
+}
+
+#register-form p:nth-of-type(1) {
+    width: 95%;
+    min-width: none;
+    justify-self: end;
+}
+
+#register-form p:nth-of-type(2) {
+    width: 95%;
+    min-width: none;
+    justify-self: start;
+}
+
+#register-form p:nth-child(n + 4) {
+    grid-column: span 2;
+}
+
+#register-form ul {
+    font-size: clamp(0.7rem, 0.621rem + 0.421vw, 1rem);
+    grid-column: span 2;
+    text-align: center;
+    list-style-type: none;
+}
+
+.helptext {
+    display: block;
+    font-size: clamp(0.7rem, 0.621rem + 0.421vw, 1rem);
+}
+
+#button-box {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    grid-column: span 2;
+}
+
+#button-box button {
+    padding: 10px 0;
+    width: 30vw;
+    max-width: 300px;
+    min-width: 200px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid grey;
+    font-weight: bold;
+    color: #4a4e69;
+
+
+    &:hover {
+        box-shadow: 0px 0px 2px black;
+    }
+
+    &:active {
+        box-shadow: inset 0px 0px 2px black;
+    }
+}
+
+
+/* footer styles */
+footer {
+    height: 100px;
+    width: 100%;
+    background-color: #e5e5e5;
+    box-shadow: 0px 0px 2px black;
+}

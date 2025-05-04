@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <script src="{% static 'js/login.js' %}"></script>
+</head>
+<header>
+    <h2 id="login-header">Login</h2>
+</header>
+{% endblock header %}
+{% block content %}
+
+
+<form action="{% url 'login' %}" id="login-form" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div id="button-box">
+        <a href="{% url 'homepage'%}"><button type="button">Cancel</button></a>
+        <button type="submit">Login</button>
+    </div>
+    <p>Don't already have an account register <a href="{% url 'register' %}">here!</a></p>
+</form>
+
+
+{% endblock content %}
+
+{% block footer %}
+<footer>
+
+</footer>
+{% endblock footer %}
+
+
+

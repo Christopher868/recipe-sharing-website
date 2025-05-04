@@ -1,0 +1,124 @@
+/* messages styles */
+.errorlist {
+    list-style-type: none;
+    text-align: center;
+    min-height: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: red;
+}
+
+#edit-header-text {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 75px;
+    margin-top: 50px;
+}
+
+#edit-profile-form {
+    width: 100%;
+    border-bottom: 1px solid black;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#edit-profile-form p {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#edit-profile-form input {
+    width: 95%;
+    padding: 5px 0;
+    border-radius: 10px;
+    border: 1px solid black;
+    text-align: center;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+#edit-profile-form label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4a4e69;
+}
+
+#form-button-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+
+}
+
+#form-button-box a {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+#cancel-button {
+    max-width: 300px;
+    width: 100%;
+    padding: 6px 0;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-weight: bold;
+
+    &:hover {
+        box-shadow: 0px 0px 2px black;
+    }
+
+    &:active {
+        box-shadow: inset 0px 0px 2px black;
+    }
+}
+
+#save-button {
+    max-width: 300px;
+    width: 90%;
+    padding: 6px 0;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-weight: bold;
+
+    &:hover {
+        box-shadow: 0px 0px 2px black;
+    }
+
+    &:active {
+        box-shadow: inset 0px 0px 2px black;
+    }
+}
+
+#button-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0;
+}
+
+#button-box a {
+    max-width: 300px;
+    width: 90%;
+}
+
+#change-password-button {
+    text-align: center;
+    padding: 6px 0;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-weight: bold;
+    max-width: 300px;
+    width: 100%;
+}

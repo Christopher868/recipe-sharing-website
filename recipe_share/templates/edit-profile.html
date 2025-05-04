@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
+</head>
+
+<h2 id="edit-header-text">Edit Profile</h2>
+
+<section id="edit-profile-container">
+<form action="{% url 'edit-profile'%}" method="POST" id="edit-profile-form">
+    {% csrf_token %}
+    <p>{{form.username.label_tag}}{{form.username}}</p>
+    <p>{{form.email.label_tag}}{{form.email}}</p>
+    <p>{{form.first_name.label_tag}}{{form.first_name}}</p>
+    <p>{{form.last_name.label_tag}}{{form.last_name}}</p>
+
+<div id="form-button-box">
+    <button type="submit" id="save-button">Save Changes</button>
+    <a href="{% url 'homepage' %}"><button type="button" id="cancel-button">Cancel</button></a>
+</div>
+</form>
+<div id="button-box">
+    <a href="{% url 'change-password' %}"><button type="button" id="change-password-button">Change Password</button></a>
+</div>
+</section>
+
+{% endblock content %}
+
+

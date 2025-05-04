@@ -1,3 +1,113 @@
-div {
+#page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+#home-msg {
+    grid-column: span 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #4a4e69;
+    margin-top: 50px;
+
+}
+
+#home-msg h2 {
+    font-size: clamp(2rem, 1.868rem + 0.702vw, 2.5rem);
     text-align: center;
+}
+
+#home-msg p {
+    width: 80%;
+    max-width: 720px;
+    text-align: center;
+    font-size: clamp(0.9rem, 0.847rem + 0.281vw, 1.1rem);
+}
+
+#home-content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.home-content {
+    margin: 0 10px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #e5e5e5;
+    color: #4a4e69;
+    box-shadow: 0px 0px 2px black;
+    height: 700px;
+
+}
+
+.home-content h3 {
+    font-size: 1.8rem;
+    padding-bottom: 20px;
+    border-bottom: 1px solid grey;
+    width: 100%;
+    text-align: center;
+}
+
+.recipes-container {
+    padding-top: 30px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3%;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    min-width: 280px;
+}
+
+.recipes-category-card {
+    border: 1px solid grey;
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    position: relative;
+}
+
+.recipes-category-card h4,
+.recipe-link-card h4 {
+    padding: 10px 0;
+    font-size: 1.5rem;
+    position: absolute;
+    bottom: 5%;
+    color: white;
+}
+
+.home-img {
+    width: 100%;
+    aspect-ratio: 1.5 / 1;
+    border-radius: 10px;
+}
+
+.recipe-link-card {
+    border: 1px solid grey;
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    position: relative;
 }
