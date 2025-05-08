@@ -35,19 +35,19 @@ class UserRecipe(models.Model):
         ('Advanced', 'Advanced'),
     ]
 
-    name = models.CharField(max_length=100)
-    recipe_category = models.ForeignKey(RecipeCategory, on_delete=models.SET_NULL, null=True)
-    image = models.ImageField(upload_to='recipe-images/', default='', null=True, blank=True)
-    difficulty = models.CharField(max_length=13, choices=difficulty_options)
-    instructions = models.TextField(validators=[MaxLengthValidator(1000)], help_text="Max Characters 1000 | Please make sure instructions are clear and easy to understand!")
-    equipment = models.TextField(validators=[MaxLengthValidator(500)], help_text="Max Characters 500 | Please make sure equipment list is easy to understand!")
+    recipe_name = models.CharField(max_length=100, help_text='Please give your recipe a good name | Max Characters 100')
+    recipe_category = models.ForeignKey(RecipeCategory, on_delete=models.SET_NULL, null=True, help_text='Please choose category for your recipe')
+    recipe_picture = models.ImageField(upload_to='recipe-images/', default='', null=True, blank=True, help_text="Please take a good picture of recipes final product and include it here")
+    recipe_difficulty = models.CharField(max_length=13, choices=difficulty_options, help_text="Please choose difficulty that matches your recipe the best")
+    instructions = models.TextField(validators=[MaxLengthValidator(2000)], help_text="Please carefully explain instructions for your recipe | Please use to enter to go down a line to between each step | Max Characters 2000")
+    required_equipment = models.TextField(validators=[MaxLengthValidator(1000)], help_text="Please include that tools will be needed for this recipe | Please use enter to go down a line between in each piece of equipment | Max Characters 1000")
     created_at = models.DateField(auto_now_add=True, editable=False, null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes', editable=False, null=True)
 
     def __str__(self):
         if self.created_by is None:
-            return f"{self.name} {self.created_at}"
+            return f"{self.recipe_name} {self.created_at}"
         else:
-            return f"{self.created_by} {self.name} {self.created_at}"
+            return f"{self.created_by} {self.recipe_name} {self.created_at}"
         
 

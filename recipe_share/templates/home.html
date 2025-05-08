@@ -18,12 +18,15 @@
 <!-- Section for displaying top rated recipes section-->
 <section id="home-content-container">
     <section class="home-content">
-        <h3>Top Rated Recipes</h3>
+        <h3>Top Liked Recipes</h3>
         <div class="recipes-container">
-            <div class="recipe-link-card">
-                <img src="{% static 'images/about-img1.jpg'%}" alt="" class="home-img">
-                <h4>Recipe Name</h4>
-            </div>
+            <a href="{% static 'view-recipe' 5 %}">
+                <div class="recipe-link-card">
+                    <img src="{% static 'images/about-img1.jpg'%}" alt="" class="home-img">
+                    <h4 class="likes">Likes: 1</h4>
+                    <h4 class="recipe-name">Recipe Name</h4>
+                </div>
+            </a>
         </div>
     </section>
 
@@ -32,10 +35,14 @@
         <h3>Recipe Categories</h3>
         <div class="recipes-container">
             {% for category in categories %}
-            <a href="#">
+            <a href="{% url 'recipes' category.name  %}">
                 <div class="recipes-category-card">
+                    {% if category.image %}
                     <img src="{{ category.image.url }}" alt="Image for {{ category.name }} category" class="home-img">
-                    <h4>{{ category.name }}</h4>
+                    {% else %}
+                    <img src="{% static 'images/image-placeholder.png' %}" alt="Image filler for recipe named {{category.name}}" class="home-img">
+                    {% endif %}
+                    <h4 class="category-name">{{ category.name }}</h4>
                 </div>
             </a>
             {% endfor %}

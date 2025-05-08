@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/view-recipe.css' %}">
+</head>
+<section id="recipe-container">
+    <div id="recipe-button-box">
+        {% if user == recipe.created_by %}
+        <a href="{% url 'edit-recipe' recipe.id %}"><button type='button'>Edit Recipe</button></a>
+        {% endif %}
+        <a href="{% url 'recipes' 'All' %}"><button type ="button"><i class="fa-solid fa-arrow-left"></i> Back</button></a>
+        <button type="button">Like <i class="fa-solid fa-thumbs-up"></i></button>
+    </div>
+    <div id="recipe-info-header-container">
+        {% if recipe.recipe_picture %}
+        <img class="recipe-image" src="{{ recipe.recipe_picture.url }}" alt="Image for {{recipe.recipe_name}} recipe">
+        {% else %}
+        <img class="recipe-image"src="{% static 'images/image-placeholder.png' %}" alt="Image filler for recipe named {{recipe.recipe_name}}">
+        {% endif %}
+        <div id="recipe-info-header">
+            <p><span class="header-text">Recipe Name</span><br>{{recipe.recipe_name}}</p>
+            <p><span class="header-text">Recipe Difficulty</span><br>{{recipe.recipe_difficulty}}</p>
+            <p><span class="header-text">Recipe Category</span><br>{{recipe.recipe_category}}</p>
+            <p><span class="header-text">Created By User</span><br>{{recipe.created_by}}</p>
+        </div>
+    </div>
+    <div id="recipe-instructions-container">
+        <div class="recipe-instructions">
+            <p>Instructions Steps</p>
+            <ol>
+                {% for line in recipe.instructions.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="recipe-instructions">
+            <p>Equipment</p>
+            <ul>
+                {% for line in recipe.required_equipment.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock content %}

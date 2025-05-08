@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/create-recipe.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<form action="{% url 'create-recipe' %}" method="POST" id="create-recipe" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <div id="create-recipe-button-box">
+        <button type='submit' id>Save Recipe</button>
+        <button type="button" onclick="history.back()">Cancel</button>
+    </div>
+</form>
+{% endblock content %}
