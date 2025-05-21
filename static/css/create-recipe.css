@@ -48,6 +48,7 @@
     width: 90%;
     border: 1px solid black;
     border-radius: 5px;
+    line-height: 1.5rem;
 
     &:focus {
         outline: none;

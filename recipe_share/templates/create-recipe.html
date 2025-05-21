@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-
+<!--Form that allows users to create recipes-->
 <form action="{% url 'create-recipe' %}" method="POST" id="create-recipe" enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
+
+    <!--Buttons for create recipe page-->
     <div id="create-recipe-button-box">
         <button type='submit' id>Save Recipe</button>
         <button type="button" onclick="history.back()">Cancel</button>

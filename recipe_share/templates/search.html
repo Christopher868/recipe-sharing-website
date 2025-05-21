@@ -3,33 +3,19 @@
 
 {% block content %}
 <head>
-    <link rel="stylesheet" href="{% static 'css/recipes.css' %}">
-    <script src="{% static 'js/recipes.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
 </head>
 
 <!--Filters for recipes-->
 <section id="filter-container">
-    <h2>Filter by Category</h2>
-    <form method="GET" action="{% url 'filter' %}">
-        {% csrf_token %}
-        <select name="category" id="filter" name="search-filter" onchange="this.form.submit()">
-            <option value="All">All</option>
-            {% for category in categories %}
-            {% if filter  == category.name %}
-                <option value="{{ category.name }}" selected>{{ category.name }}</option>
-            {% else %}
-                <option value="{{ category.name }}">{{ category.name }}</option>
-            {% endif %}
-            {% endfor %}  
-        </select>
-    </form>
+    <h2>Search Results for: {{ query }}</h2>
 </section>
 
 <!--Section that displays recipes-->
 <section id="recipes-container">
     <div id="recipes-box">
     {% for recipe in recipes %}
-        <a href="{% url 'view-recipe' recipe.id %}?next={{ request.path }}" class="recipe-card-link">
+        <a href="{% url 'view-recipe' recipe.id %}?next={{ request.path }}&from=search&search={{ request.GET.search }}&category={{ request.GET.category }}&page={{ recipes.number }}" class="recipe-card-link">
             <div class="recipe-card">
                 {% if recipe.recipe_picture %}
                 <img src="{{ recipe.recipe_picture.url }}" alt="Image for recipe named {{recipe.recipe_name}}">
@@ -44,10 +30,11 @@
     </div>
 </section>
 
+
 <!--Section that allows you to change pages-->
 <div class="pages">
     {% if recipes.has_previous %}
-        <a href="?page={{ recipes.previous_page_number }}"><button class="page-button"><i class="fa-solid fa-arrow-left"></i></button></a>
+        <a href="?search={{ request.GET.search }}&category={{ request.GET.category }}&page={{ recipes.previous_page_number }}"><button class="page-button"><i class="fa-solid fa-arrow-left"></i></button></a>
     {% endif %}
 
     <span>
@@ -55,7 +42,7 @@
     </span>
 
     {% if recipes.has_next %}
-        <a href="?page={{ recipes.next_page_number }}"><button class="page-button"><i class="fa-solid fa-arrow-right"></i></button></a>
+        <a href="?search={{ request.GET.search }}&category={{ request.GET.category }}&page={{ recipes.next_page_number }}"><button class="page-button"><i class="fa-solid fa-arrow-right"></i></button></a>
     {% endif %}
 </div>
 

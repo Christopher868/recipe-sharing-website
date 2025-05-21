@@ -48,6 +48,7 @@
     width: 90%;
     border: 1px solid black;
     border-radius: 5px;
+    line-height: 1.5rem;
 
     &:focus {
         outline: none;
@@ -107,9 +108,24 @@
     width: 100%;
 }
 
+#cancel {
+    width: 100%;
+    max-width: 250px;
+    padding: 5px 0;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: #4a4e69;
+}
+
+#cancel-link {
+    max-width: 250px;
+    width: 100%;
+}
+
 #edit-recipe-button-box button {
     width: 90%;
-    max-width: 300px;
+    max-width: 250px;
     padding: 5px 0;
     font-weight: bold;
     border: 1px solid black;
@@ -139,5 +155,5 @@ label[for='recipe_picture-clear_id'] {
 }
 
 #recipe_picture-clear_id {
-    width: fit-content !important;
+    display: none;
 }

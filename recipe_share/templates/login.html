@@ -5,13 +5,15 @@
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <script src="{% static 'js/login.js' %}"></script>
 </head>
+
+<!--Header for login page-->
 <header>
     <h2 id="login-header">Login</h2>
 </header>
 {% endblock header %}
 {% block content %}
 
-
+<!--Login form for user-->
 <form action="{% url 'login' %}" id="login-form" method="POST">
     {% csrf_token %}
     {{ form.as_p }}

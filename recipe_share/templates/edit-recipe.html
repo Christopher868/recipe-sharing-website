@@ -7,13 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-
-<form action="{% url 'edit-recipe' recipe.id %}" method="POST" id="edit-recipe" enctype="multipart/form-data">
+<!--Form that allows user to edit recipes-->
+<form action="{% url 'edit-recipe' recipe.id %}?next={{ request.GET.next }}" method="POST" id="edit-recipe" enctype="multipart/form-data">
     {% csrf_token %}
-   {{form.as_p}}
+    {{form.as_p}}
+
+   <!--Buttons for edit recipe page-->
     <div id="edit-recipe-button-box">
-        <button type='submit' id>Save Changes</button>
-        <button type="button" onclick="history.back()">Cancel</button>
+        <button type='submit'>Save Changes</button>
+        <a href="{% url 'view-recipe' recipe.id%}?next={{ request.GET.next }}" id="cancel-link"><button type="button" id="cancel">Cancel</button></a>
     </div>
 </form>
 {% endblock content %}

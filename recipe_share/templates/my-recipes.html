@@ -6,36 +6,60 @@
     <link rel="stylesheet" href="{% static 'css/my-recipes.css' %}">
     <script src="{% static 'js/recipes.js' %}"></script>
 </head>
+
+<!--Filters section of my recipes page-->
 <section id="filter-container">
     <h2>Filter by Category</h2>
-    <select name="category" id="filter" name="search-filter" selected=" {{ filter }} ">
-        <option value="All">All</option>
-        {% for category in categories %}
-        {% if filter  == category.name %}
-        <option value="{{ category.name }}" selected>{{ category.name }}</option>
-        {% else %}
-        <option value="{{ category.name }}">{{ category.name }}</option>
-        {% endif %}
-        {% endfor %}  
-    </select>
+    <form action="{% url 'my-recipes'%}" method="POST">
+        {% csrf_token %}
+        <select name="category" id="filter" name="search-filter" onchange="this.form.submit()">
+            <option value="All">All</option>
+            {% for category in categories %}
+                {% if filter  == category.name %}
+                    <option value="{{ category.name }}" selected>{{ category.name }}</option>
+                {% else %}
+                    <option value="{{ category.name }}">{{ category.name }}</option>
+                {% endif %}
+            {% endfor %}  
+        </select>
+    </form>
 </section>
 
+<!--Section that displays user's recipes-->
 <section id="recipes-container">
     <div id="recipes-box">
     {% for recipe in recipes %}
-        <a href="{% url 'view-recipe' recipe.id %}">
-            <div id="recipe-card">
+        <a href="{% url 'view-recipe' recipe.id %}?next={{ request.path }}">
+            <div class="recipe-card">
                 {% if recipe.recipe_picture %}
                 <img src="{{ recipe.recipe_picture.url }}" alt="Image for recipe named {{recipe.recipe_name}}">
                 {% else %}
                 <img src="{% static 'images/image-placeholder.png' %}" alt="Image filler for recipe named {{recipe.recipe_name}}">
                 {% endif %}
-                <h4 class="likes">Likes: 1</h4>
+                <h4 class="likes">Likes: {{ recipe.total_likes }}</h4>
                 <h4 class="recipe-name">{{ recipe.recipe_name }}</h4>
             </div>
         </a>
     {% endfor %}
     </div>
 </section>
+
+
+<!--Section that allows you to change pages-->
+<div class="pages">
+    {% if recipes.has_previous %}
+        <a href="?page={{ recipes.previous_page_number }}"><button class="page-button"><i class="fa-solid fa-arrow-left"></i></button></a>
+    {% endif %}
+
+    <span>
+        Page {{ recipes.number }} of {{ recipes.paginator.num_pages }}
+    </span>
+
+   
+
+    {% if recipes.has_next %}
+        <a href="?page={{ recipes.next_page_number }}"><button class="page-button"><i class="fa-solid fa-arrow-right"></i></button></a>
+    {% endif %}
+</div>
 
 {% endblock content %}

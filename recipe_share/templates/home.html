@@ -17,16 +17,24 @@
 
 <!-- Section for displaying top rated recipes section-->
 <section id="home-content-container">
+
+    <!--Section for displaying top 10 recipes-->
     <section class="home-content">
-        <h3>Top Liked Recipes</h3>
+        <h3>Top 10 Recipes</h3>
         <div class="recipes-container">
-            <a href="{% static 'view-recipe' 5 %}">
+            {% for recipe in recipes %}
+            <a href="{% url 'view-recipe' recipe.id %}">
                 <div class="recipe-link-card">
-                    <img src="{% static 'images/about-img1.jpg'%}" alt="" class="home-img">
-                    <h4 class="likes">Likes: 1</h4>
-                    <h4 class="recipe-name">Recipe Name</h4>
+                    {% if recipe.recipe_picture %}
+                        <img src="{{ recipe.recipe_picture.url }}" alt="Image for recipe named {{recipe.recipe_name}}" class="home-img">
+                    {% else %}
+                        <img src="{% static 'images/image-placeholder.png' %}" alt="Image filler for recipe named {{recipe.recipe_name}}" class="home-img">
+                    {% endif %}
+                    <h4 class="likes">Likes: {{recipe.total_likes}}</h4>
+                    <h4 class="recipe-name">{{recipe.recipe_name}}</h4>
                 </div>
             </a>
+            {% endfor %}
         </div>
     </section>
 

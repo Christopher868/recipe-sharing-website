@@ -23,8 +23,8 @@
                 <li class="nav-item dropdown-button"><span class="button">Account <i class="fas fa-angle-down down" id="arrow"></i></span> 
                         <div class="dropdown-content hide">
                             <ul id="dropdown-list">
-                                <a href="{% url 'create-recipe' %}" class="dropdown-link"><li>Create a Recipe</li></a>
-                                <a href="{% url 'my-recipes' %}" class="dropdown-link"><li>View my Recipes</li></a>
+                                <a href="{% url 'create-recipe' %}" class="dropdown-link"><li>Create Recipe</li></a>
+                                <a href="{% url 'my-recipes' %}" class="dropdown-link"><li>My Recipes</li></a>
                                 <a href="{% url 'edit-profile' %}" class="dropdown-link"><li>Edit Profile</li></a>
                                 <a href="{% url 'logout' %}" class="dropdown-link"><li>Logout</li></a>
                             </ul>
@@ -37,14 +37,14 @@
             </ul>
         </nav>
         <div id="search-container">
-            <form id="search-bar" class="hide" action="">
+            <form id="search-bar" class="hide" action="{% url 'search' %}">
                 {% csrf_token %}
-                <select name="category" id="select-category" name="search-filter">
+                <select name="category" id="select-category" name="search-filter" value="{{request.GET.category}}">
                     <option value="recipe-name">Recipe</option>
-                    <option value="author-name">Author</option>
+                    <option value="author-name" {% if request.GET.category == 'author-name' %}selected{% endif %}>Author</option>
                 </select>
                 <button type="submit" id="submit-button"><i class="fa fa-search"></i></button>
-                <input type="search" id="search-input" placeholder="Search by Recipe Name" name="search">
+                <input type="search" id="search-input" placeholder="Search by Recipe Name" name="search" role="search" value="{{ request.GET.search }}">
                 
             </form>
         </div>

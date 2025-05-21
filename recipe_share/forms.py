@@ -31,7 +31,7 @@ class ChangeUser(UserChangeForm):
 class CreateRecipe(forms.ModelForm):
     class Meta:
         model = UserRecipe
-        fields = ['recipe_name', 'recipe_category', 'recipe_picture', 'recipe_difficulty', 'required_equipment', 'instructions']
+        fields = ['recipe_name', 'recipe_category', 'recipe_picture', 'recipe_difficulty', 'recipe_ingredients', 'required_equipment', 'instructions']
         labels = {
-            'recipe_picture': 'Upload Recipe Picture'
+            'recipe_picture': 'Upload Recipe Picture',
         }

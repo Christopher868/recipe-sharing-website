@@ -35,19 +35,24 @@ class UserRecipe(models.Model):
         ('Advanced', 'Advanced'),
     ]
 
-    recipe_name = models.CharField(max_length=100, help_text='Please give your recipe a good name | Max Characters 100')
+    recipe_name = models.CharField(max_length=75, help_text='Please give your recipe a good name | Max Characters 75')
     recipe_category = models.ForeignKey(RecipeCategory, on_delete=models.SET_NULL, null=True, help_text='Please choose category for your recipe')
     recipe_picture = models.ImageField(upload_to='recipe-images/', default='', null=True, blank=True, help_text="Please take a good picture of recipes final product and include it here")
     recipe_difficulty = models.CharField(max_length=13, choices=difficulty_options, help_text="Please choose difficulty that matches your recipe the best")
-    instructions = models.TextField(validators=[MaxLengthValidator(2000)], help_text="Please carefully explain instructions for your recipe | Please use to enter to go down a line to between each step | Max Characters 2000")
-    required_equipment = models.TextField(validators=[MaxLengthValidator(1000)], help_text="Please include that tools will be needed for this recipe | Please use enter to go down a line between in each piece of equipment | Max Characters 1000")
+    instructions = models.TextField(validators=[MaxLengthValidator(3000)], help_text="Please carefully explain instructions for your recipe | Please use to enter to go down a line to between each step | Max Characters 3000")
+    recipe_ingredients = models.TextField(validators=[MaxLengthValidator(1000)], help_text="Please include all ingredients for this recipe | Please use to enter to go down a line to between each step | Max Characters 1000")
+    required_equipment = models.TextField(validators=[MaxLengthValidator(1000)], help_text="Please include all equipment needed for this recipe | Please use enter to go down a line between in each piece of equipment | Max Characters 1000")
     created_at = models.DateField(auto_now_add=True, editable=False, null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes', editable=False, null=True)
+    likes = models.ManyToManyField(User, related_name='liked_posts', blank=True)
+
+    def total_likes(self):
+            return self.likes.count()
 
     def __str__(self):
         if self.created_by is None:
-            return f"{self.recipe_name} {self.created_at}"
+            return f"NAME: {self.recipe_name} | CATEGORY: {self.recipe_category} | DATE: {self.created_at}"
         else:
-            return f"{self.created_by} {self.recipe_name} {self.created_at}"
+            return f"CREATOR: {self.created_by} | NAME: {self.recipe_name} | CATEGORY: {self.recipe_category} | DATE: {self.created_at}"
         
 

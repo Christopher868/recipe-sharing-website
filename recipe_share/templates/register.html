@@ -5,16 +5,19 @@
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
     <script src="{% static 'js/register.js' %}"></script>
 </head>
+<!--Register page header-->
 <header>
     <h2 id="register-header">Register</h2>
 </header>
 {% endblock header %}
 {% block content %}
 
-
+<!--Register form displayed to user-->
 <form action="{% url 'register' %}" id="register-form" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
+
+    <!--Buttons that user can click on-->
     <div id="button-box">
         <a href="{% url 'login' %}"><button type="button">Cancel</button></a>
         <button type="submit">Register</button>
