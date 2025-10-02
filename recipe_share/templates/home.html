@@ -20,7 +20,7 @@
 
     <!--Section for displaying top 10 recipes-->
     <section class="home-content">
-        <h3>Top 10 Recipes</h3>
+        <h3>Top Recipes</h3>
         <div class="recipes-container">
             {% for recipe in recipes %}
             <a href="{% url 'view-recipe' recipe.id %}">
