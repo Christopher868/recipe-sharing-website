@@ -64,7 +64,7 @@
        <div class="recipe-instructions">
         <p>Ingredients</p>
         <ul>
-            {% for line in recipe.recipe_ingredients.splitlines %}q
+            {% for line in recipe.recipe_ingredients.splitlines %}
                 {% if line %}
                     <li>{{ line }}</li>
                 {% endif %}
