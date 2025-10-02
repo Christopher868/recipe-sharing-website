@@ -37,7 +37,8 @@
             </button>
         {% else %}
             <button type="button" id="like-btn" class="disabled" data-recipe-id="{{recipe.id}}" disabled>
-                Like <i class="fa-regular fa-thumbs-up"></i>
+                <span class="Like-btn-tip">Login to like recipes</span>
+
             </button>
         {% endif %}
     </div>
@@ -50,10 +51,10 @@
         <img class="recipe-image"src="{% static 'images/image-placeholder.png' %}" alt="Image filler for recipe named {{recipe.recipe_name}}">
         {% endif %}
         <div id="recipe-info-header">
-            <p><span class="header-text">Recipe Name</span><br>{{recipe.recipe_name}}</p>
-            <p><span class="header-text">Recipe Difficulty</span><br>{{recipe.recipe_difficulty}}</p>
-            <p><span class="header-text">Recipe Category</span><br>{{recipe.recipe_category}}</p>
-            <p><span class="header-text">Created By User</span><br>{{recipe.created_by}}</p>
+            <p><span class="header-text">Recipe name</span><br>{{recipe.recipe_name}}</p>
+            <p><span class="header-text">Recipe difficulty</span><br>{{recipe.recipe_difficulty}}</p>
+            <p><span class="header-text">Recipe category</span><br>{{recipe.recipe_category}}</p>
+            <p><span class="header-text">Created by user</span><br>{{recipe.created_by}}</p>
             <p><span class="header-text">Likes</span><br><span id="like-count">{{recipe.total_likes}}</span></p>
         </div>
     </div>
@@ -63,7 +64,7 @@
        <div class="recipe-instructions">
         <p>Ingredients</p>
         <ul>
-            {% for line in recipe.recipe_ingredients.splitlines %}
+            {% for line in recipe.recipe_ingredients.splitlines %}q
                 {% if line %}
                     <li>{{ line }}</li>
                 {% endif %}
