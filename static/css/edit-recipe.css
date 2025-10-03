@@ -64,7 +64,8 @@
     max-width: 720px;
     width: 90%;
     text-align: center;
-    padding: 3px 0;
+    text-align-last: center;
+    padding: 3px 10px;
     border-radius: 5px;
     border: 1px solid black;
 
@@ -109,18 +110,13 @@
 }
 
 #cancel {
-    width: 100%;
+    width: 100% !important;
     max-width: 250px;
-    padding: 5px 0;
-    font-weight: bold;
-    border: 1px solid black;
-    border-radius: 5px;
-    color: #4a4e69;
 }
 
 #cancel-link {
     max-width: 250px;
-    width: 100%;
+    width: 90%;
 }
 
 #edit-recipe-button-box button {
