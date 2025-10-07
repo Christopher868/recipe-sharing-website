@@ -9,6 +9,7 @@
     align-items: center;
     padding: 20px 0;
     width: 99%;
+    position: relative;
 
 }
 
@@ -19,6 +20,7 @@
     align-items: center;
     gap: 50px;
     width: 90%;
+    
 }
 
 #recipe-container button {
@@ -59,6 +61,13 @@
     max-width: 250px;
 }
 
+#print-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    min-width: 40px !important;
+    width: 10px !important;
+}
 #recipe-info-header-container {
     display: flex;
     justify-content: space-between;
@@ -96,7 +105,7 @@
 
 
 .recipe-image {
-    flex: 1 1 550px;
+    flex: 1 1 350px;
     aspect-ratio: 3 / 2;
     min-width: 50%;
     width: 50%;
@@ -178,3 +187,71 @@
     
 }
 
+/* Styles for print format */
+
+@media print {
+
+    #recipe-container {
+        width: 100% !important;
+        gap: 30px !important;
+    }
+
+    #recipe-button-box, #base-header, #base-footer {
+        display: none;
+    }
+
+    #recipe-info-header {
+        width: 40%;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        border: none !important;
+        box-shadow: none !important;
+        font-size: 1em;
+        padding: 0 !important;
+    }
+
+    #recipe-info-header p:nth-of-type(2), #recipe-info-header p:nth-of-type(3), #recipe-info-header p:nth-of-type(5) {
+        display: none;
+    }
+
+    .recipe-image {
+        break-inside: avoid;
+        width: 40% !important;
+        min-width: none;
+        flex: none;
+        margin: 0 auto;
+    }
+
+    #recipe-instructions-container {
+        gap: 10px !important;
+        width: 100% !important;
+    }
+    .recipe-instructions {
+        break-inside: avoid;
+        min-width: 200px !important;
+        row-gap: 0px !important;
+        column-gap: 10px !important;
+    }
+
+    .recipe-instructions ol, .recipe-instructions ul {
+        max-width: 80% !important;
+        padding: 0px 0px !important;
+        
+    }
+    .recipe-instructions p {
+        font-size: 1em;
+        padding: 5px 0;
+    }
+    .recipe-instructions li {
+        font-size: .5em;
+        padding: 3px !important;
+    }
+
+    #page-content {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+}

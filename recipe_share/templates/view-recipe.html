@@ -41,6 +41,7 @@
 
             </button>
         {% endif %}
+            <button id="print-btn" onclick="window.print()"><i class="fa-solid fa-print"></i></button>
     </div>
 
     <!--Top of recipe information page-->
@@ -54,7 +55,7 @@
             <p><span class="header-text">Recipe name</span><br>{{recipe.recipe_name}}</p>
             <p><span class="header-text">Recipe difficulty</span><br>{{recipe.recipe_difficulty}}</p>
             <p><span class="header-text">Recipe category</span><br>{{recipe.recipe_category}}</p>
-            <p><span class="header-text">Created by user</span><br>{{recipe.created_by}}</p>
+            <p><span class="header-text">Created by</span><br>{{recipe.created_by}}</p>
             <p><span class="header-text">Likes</span><br><span id="like-count">{{recipe.total_likes}}</span></p>
         </div>
     </div>
