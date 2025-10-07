@@ -180,7 +180,7 @@ def edit_recipe(request, recipe_id):
     recipe = get_object_or_404(UserRecipe, id=recipe_id)
     if recipe.created_by == request.user:
         if request.method == 'POST':
-            form =CreateRecipe(request.POST, instance=recipe)
+            form = CreateRecipe(request.POST, request.FILES, instance=recipe)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Changes Saved!')
