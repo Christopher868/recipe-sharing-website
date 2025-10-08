@@ -41,7 +41,7 @@
 
             </button>
         {% endif %}
-            <button id="print-btn" onclick="window.print()"><i class="fa-solid fa-print"></i></button>
+            <a href="{% url 'print' recipe.id %}"><button id="print-btn"><i class="fa-solid fa-print"></i></button></a>
     </div>
 
     <!--Top of recipe information page-->

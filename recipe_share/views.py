@@ -193,6 +193,12 @@ def edit_recipe(request, recipe_id):
     return render(request, 'edit-recipe.html', {'recipe': recipe, 'form': form})
 
 
+# View for printing a recipe
+def print(request, recipe_id):
+    recipe = get_object_or_404(UserRecipe, id=recipe_id)
+    return render(request, 'print.html', {'recipe': recipe})
+
+
 # View for deleting a recipe
 def delete_recipe(request, recipe_id):
     recipe = UserRecipe.objects.get(id=recipe_id)

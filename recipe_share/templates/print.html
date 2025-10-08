@@ -1,0 +1,70 @@
+{% load static %}
+
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/print.css' %}">
+    <script src="{% static 'js/print.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<section id="options-bar">
+    <h2 id="options-bar-header">Edit Format</h2>
+    <button class="option-btn" id="picture">Toggle: Picture</button>
+    <button class="option-btn" id="equipment">Toggle: Equipment</button>
+    <button class="option-btn" id="text">Text Size: Small</button>
+    
+    <button id="print-btn" onclick="window.print()"><i class="fa-solid fa-print"></i></button>
+</section>
+
+<section id="recipe-container">
+
+     <!--Top of recipe information page-->
+    <div id="recipe-info-header-container">
+        {% if recipe.recipe_picture %}
+        <img class="recipe-image" src="{{ recipe.recipe_picture.url }}" alt="Image for {{recipe.recipe_name}} recipe">
+        {% else %}
+        <img class="recipe-image"src="{% static 'images/image-placeholder.png' %}" alt="Image filler for recipe named {{recipe.recipe_name}}">
+        {% endif %}
+        <div id="recipe-info-header">
+            <p id="recipe-name">{{recipe.recipe_name}}</p>
+        </div>
+    </div>
+
+    
+    <!--Instructions and Equipment section of the page-->
+    <div id="recipe-instructions-container">
+       <div class="recipe-instructions">
+        <p>Ingredients</p>
+        <ul>
+            {% for line in recipe.recipe_ingredients.splitlines %}
+                {% if line %}
+                    <li>{{ line }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+       </div>
+
+        <div class="recipe-instructions" id="equipment-section">
+            <p>Equipment</p>
+            <ul>
+                {% for line in recipe.required_equipment.splitlines %}
+                    {% if line %}
+                        <li>{{ line }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="recipe-instructions">
+            <p>Instructions Steps</p>
+            <ol>
+                {% for line in recipe.instructions.splitlines %}
+                    {% if line %}
+                        <li>{{ line }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+
+</section>
+

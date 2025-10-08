@@ -17,5 +17,6 @@ urlpatterns = [
     path('like/', views.like_post, name='like_post'),
     path('filter/', views.filter_recipes, name='filter'), 
     path('delete-recipe/<int:recipe_id>/', views.delete_recipe, name='delete-recipe'),
-    path('search/', views.search, name='search')
+    path('search/', views.search, name='search'),
+    path('print/<int:recipe_id>/', views.print, name='print'),
 ]
