@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (btn === text) {
                     text.textContent = text.textContent === 'Text Size: Large' ? 'Text Size: Small' : 'Text Size: Large';
                     text_size.forEach(item => {
-                        item.style.fontSize = item.style.fontSize === '24px' ? '16px' : '24px';
+                        item.style.fontSize = item.style.fontSize === '20px' ? '16px' : '20px';
                     });
             }
 
