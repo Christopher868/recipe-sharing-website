@@ -2,12 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
 from django.core.validators import MaxLengthValidator
+from django.utils import timezone 
 
 # Model for storing customer messages
 class CustomerMessage(models.Model):
     email = models.EmailField(max_length=100)
     message = models.TextField(validators=[MaxLengthValidator(500)], help_text="Max Characters 500")
-    date = models.DateField(default=date.today)
+    date = models.DateField(default=timezone.now)
 
     def __str__(self):
         return f"{self.email} ({self.date})"
@@ -42,7 +43,7 @@ class UserRecipe(models.Model):
     instructions = models.TextField(validators=[MaxLengthValidator(3000)], help_text="Please carefully explain instructions for your recipe | Please use to enter to go down a line to between each step | Max Characters 3000")
     recipe_ingredients = models.TextField(validators=[MaxLengthValidator(1000)], help_text="Please include all ingredients for this recipe | Please use to enter to go down a line to between each step | Max Characters 1000")
     required_equipment = models.TextField(validators=[MaxLengthValidator(1000)], help_text="Please include all equipment needed for this recipe | Please use enter to go down a line between in each piece of equipment | Max Characters 1000")
-    created_at = models.DateField(auto_now_add=True, editable=False, null=True)
+    created_at = models.DateField(default=timezone.now, editable=False, null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes', editable=False, null=True)
     likes = models.ManyToManyField(User, related_name='liked_posts', blank=True)
 
