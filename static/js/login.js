@@ -1,13 +1,10 @@
-document.addEventListener('DOMContentLoaded', function () {
 
+// js to make error messages go away after a 5 seconds
+const errorList = document.querySelector(".errorlist")
 
-    // js to make error messages go away after a 5 seconds
-    const errorList = document.querySelector(".errorlist")
+if (errorList) {
+    setTimeout(() => {
+        errorList.remove()
+    }, 5000)
+}
 
-    if (errorList) {
-        setTimeout(() => {
-            errorList.remove()
-        }, 5000)
-    }
-
-})

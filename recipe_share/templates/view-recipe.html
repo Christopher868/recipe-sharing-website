@@ -6,12 +6,11 @@
 
 <head id='view-recipe-head'>
     <link rel="stylesheet" href="{% static 'css/view-recipe.css' %}">
-    <script src="{% static 'js/view-recipe.js' %}"></script>
     <script>
         window.AppConfig = {
-          likeUrl: "{% url 'like_post' %}"
+            likeUrl: "{% url 'like_post' %}"
         };
-      </script>
+    </script>
 </head>
 
 <section id="recipe-container">
@@ -97,5 +96,7 @@
     </div>
 
 </section>
+<script src="{% static 'js/view-recipe.js' %}"></script>
+
 
 {% endblock content %}
