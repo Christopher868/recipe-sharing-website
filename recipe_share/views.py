@@ -232,7 +232,7 @@ def like_post(request):
 def search(request):
     category = request.GET.get('category')
     query = request.GET.get('search')
-    print(query)
+    
     
     if category == 'recipe-name':
         recipes = UserRecipe.objects.filter(recipe_name__contains=query)
