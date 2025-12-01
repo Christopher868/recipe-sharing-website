@@ -87,6 +87,7 @@ body {
     justify-content: center;
     width: 100%;
     height: fit-content;
+    z-index: 100;
 }
 
 #search-bar {
